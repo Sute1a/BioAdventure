@@ -254,7 +254,7 @@ AnimatorStateMachine:
     m_Position: {x: 380, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3837338995930396840}
-    m_Position: {x: 408.17374, y: 123.681885, z: 0}
+    m_Position: {x: 410, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2415029913753724392}
     m_Position: {x: 370, y: 400, z: 0}
@@ -394,6 +394,12 @@ AnimatorController:
   m_Name: PlayerA
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: a
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: walk
     m_Type: 4
     m_DefaultFloat: 0
@@ -431,12 +437,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: nifeGrap
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: a
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
