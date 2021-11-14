@@ -48,7 +48,7 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("a");
+            animator.SetTrigger("attack");
         }
 
         if (Mathf.Abs(x) > 0 || Mathf.Abs(z) > 0)
@@ -57,7 +57,7 @@ public class FPSController : MonoBehaviour
             {
                 animator.SetBool("walk", false);
                 animator.SetBool("run", true);
-                speed = 0.25f;
+                speed = 0.2f;
             }
             else
             {
