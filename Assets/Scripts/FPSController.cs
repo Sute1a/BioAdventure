@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSController : MonoBehaviour
 {
@@ -22,12 +23,23 @@ public class FPSController : MonoBehaviour
     public Animator animator;
 
 
+    int playerHP = 100, maxPlayerHP = 100;
+    public Slider hpBer;
+
+   
+    public GameObject AttackCam;
 
     // Start is called before the first frame update
     void Start()
     {
         cameraRot = cam.transform.localRotation;
         characterRot = transform.localRotation;
+
+
+        hpBer.value = playerHP;
+
+       
+
     }
 
     // Update is called once per frame
@@ -49,6 +61,9 @@ public class FPSController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("attack");
+            
+           // AttackCam.transform.position = new Vector3()
+           
         }
 
         if (Mathf.Abs(x) > 0 || Mathf.Abs(z) > 0)
@@ -121,4 +136,32 @@ public class FPSController : MonoBehaviour
 
         return q;
     }
+
+    public void TakeHit(float damage)
+    {
+        playerHP =(int) Mathf.Clamp(playerHP - damage, 0, playerHP);
+
+        hpBer.value = playerHP;
+
+        if (playerHP <= 0&&!GameState.GameOver)
+        {
+            GameState.GameOver = true;
+            Debug.Log("ゲームオーバー");
+        }
+    }
+
+   //( public void OnCollisionEnter(Collision collision)
+    //{
+      //  if (collision.gameObject.GetComponent<ZombieControlle>())
+        //{
+          //  ZombieKill();
+        //}
+    //}
+
+    //public void ZombieKill()
+    //{
+       
+      //      GetComponent<ZombieControlle>().ZombieDeath();
+        
+   // }
 }
