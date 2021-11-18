@@ -87,6 +87,11 @@ public class ZombieControlle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent == null)
+        {
+            return;
+        }
+
         switch (state)
         {
             case STATE.IDLE:
@@ -196,9 +201,9 @@ public class ZombieControlle : MonoBehaviour
                 break;
 
             case STATE.DEAD:
-
+                Destroy(gameObject, 3.0f);
                 Destroy(agent);
-
+                Debug.Log(agent);
                 break;
         }
     }

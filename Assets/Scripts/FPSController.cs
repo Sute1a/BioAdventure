@@ -82,6 +82,11 @@ public class FPSController : MonoBehaviour
             }
 
         }
+        else
+        {
+            animator.SetBool("walk", false);
+            animator.SetBool("run", false);
+        }
 
     }
 
@@ -150,18 +155,5 @@ public class FPSController : MonoBehaviour
         }
     }
 
-   //( public void OnCollisionEnter(Collision collision)
-    //{
-      //  if (collision.gameObject.GetComponent<ZombieControlle>())
-        //{
-          //  ZombieKill();
-        //}
-    //}
-
-    //public void ZombieKill()
-    //{
-       
-      //      GetComponent<ZombieControlle>().ZombieDeath();
-        
-   // }
+  
 }
