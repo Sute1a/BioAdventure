@@ -26,8 +26,7 @@ public class FPSController : MonoBehaviour
     int playerHP = 100, maxPlayerHP = 100;
     public Slider hpBer;
 
-   
-    public GameObject AttackCam;
+    public GameObject MainCam,AttackCam;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +59,9 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+           // PingPong();
+            //MainCam.transform.position += MainCam.transform.forward * 10f * Time.deltaTime;
+
             animator.SetTrigger("attack");
             
            // AttackCam.transform.position = new Vector3()
@@ -90,6 +92,9 @@ public class FPSController : MonoBehaviour
 
     }
 
+    //public static float PingPong(float t, float length);
+    
+
 
     private void FixedUpdate()
     {
@@ -110,7 +115,7 @@ public class FPSController : MonoBehaviour
         {
             cursorLock = false;
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(1))
         {
             cursorLock = true;
         }
