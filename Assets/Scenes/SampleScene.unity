@@ -87155,6 +87155,7 @@ MonoBehaviour:
   cam: {fileID: 1687258581}
   animator: {fileID: 1485667121}
   hpBer: {fileID: 1094326062}
+  Nife: {fileID: 1270264580421564498}
   MainCam: {fileID: 1687258581}
   AttackCam: {fileID: 687589401}
 --- !u!136 &2086605574

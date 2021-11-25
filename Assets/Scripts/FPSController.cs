@@ -26,6 +26,8 @@ public class FPSController : MonoBehaviour
     int playerHP = 100, maxPlayerHP = 100;
     public Slider hpBer;
 
+    public GameObject Nife;
+
     public GameObject MainCam,AttackCam;
 
     // Start is called before the first frame update
@@ -59,14 +61,24 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-           // PingPong();
+            // PingPong();
             //MainCam.transform.position += MainCam.transform.forward * 10f * Time.deltaTime;
-
+            Nife.SetActive(true);
             animator.SetTrigger("attack");
             
            // AttackCam.transform.position = new Vector3()
            
         }
+
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Nife.SetActive(false);
+            animator.SetTrigger("item");
+        }
+            
+        
 
         if (Mathf.Abs(x) > 0 || Mathf.Abs(z) > 0)
         {
