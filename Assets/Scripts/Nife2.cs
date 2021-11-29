@@ -5,17 +5,29 @@ using UnityEngine;
 public class Nife2 : MonoBehaviour
 {
     [SerializeField]
-    private BoxCollider boxCollider;
+    private BoxCollider nifeCollider, pickcollider;
+
 
 
 
     public void OnNife()
     {
-        boxCollider.enabled = true;
+       
+        nifeCollider.enabled = true;
     }
 
     public void OffNife()
     {
-        boxCollider.enabled = false;
+        nifeCollider.enabled = false;
+    }
+
+    public void Pick()
+    {
+        pickcollider.enabled = true;
+    }
+
+    public void EndPick()
+    {
+        pickcollider.enabled = false;
     }
 }

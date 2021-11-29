@@ -24,15 +24,13 @@ public class Tresure : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.tag=="Nife")
-            if(particle!=null)
-        {
-            particle.Play();
-            Debug.Log("nife");
-            Destroy(particle, 1.5f);
-        }
-            else if(particleLight!=null)
+        if ( collision.gameObject.tag=="Nife" )
 
+            if (particle != null)
+            {
+                Debug.Log("Nife1");
+            }
+        else
             {
                 particleLight.Play();
                 Debug.Log("Nife2");
