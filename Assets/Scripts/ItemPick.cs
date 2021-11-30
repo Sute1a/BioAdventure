@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class ItemPick : MonoBehaviour
 {
-    
+    [SerializeField]
+    private GameObject greenT ,redT,herb,barrell0,barrell1;
+
+    private void Start()
+    {
+        
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
+
+
         if (collision.gameObject.tag == "Tresure")
         {
-            Debug.Log("Destroy");
-            Destroy(collision.gameObject ,1.0f );
+
+            if (barrell0.activeSelf==false)
+            {
+                Destroy(greenT);
+            }
+
+            else if (barrell1.activeSelf==false)
+            {
+                Destroy(redT);
+            }
+        }
+        else if (collision.gameObject == herb)
+        {
+            Destroy(herb);
         }
     }
 }

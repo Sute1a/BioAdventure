@@ -21,6 +21,7 @@ public class FPSController : MonoBehaviour
 
 
     public Animator animator;
+    
 
 
     int playerHP = 100, maxPlayerHP = 100;
@@ -76,6 +77,7 @@ public class FPSController : MonoBehaviour
         {
             Nife.SetActive(false);
             animator.SetTrigger("item");
+            
         }
             
         
