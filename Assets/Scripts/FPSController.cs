@@ -176,10 +176,12 @@ public class FPSController : MonoBehaviour
 
     public void Heal()
     {
-        Debug.Log("3");
+       
         if (playerHP < 100)
         {
+            Debug.Log("3");
             playerHP = maxPlayerHP;
+            hpBer.value = playerHP;
         }
     }
 

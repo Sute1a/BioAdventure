@@ -1,34 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemEffect : MonoBehaviour
 {
     [SerializeField]
-    private GameObject HerbObj,player;
+    private FPSController player;
+
+    [SerializeField]
+    private GameObject greenOrb, redOrb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        player.GetComponent<FPSController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
     }
+
 
     public void ItemUse()
     {
-
-    
-
-        if (HerbObj == null)
-        {
-            Debug.Log("w");
-            
-        }
+        player.Heal();
+        Debug.Log("w");
     }
+
+    public void GreenHold()
+    {
+        greenOrb.SetActive(true);
+        player.Nife.SetActive(false);
+    }
+
+    public void RedHold()
+    {
+        redOrb.SetActive(true);
+        player.Nife.SetActive(false);
+    }
+
+   
 }

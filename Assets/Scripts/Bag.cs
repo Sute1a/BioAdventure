@@ -26,7 +26,7 @@ public class Bag : MonoBehaviour
        if(Input.GetKeyDown(KeyCode.O))
         {
             bagPannel.SetActive(true);
-            animator.enabled = false;
+           // animator.enabled = false;
         }
     
 
@@ -34,7 +34,7 @@ public class Bag : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             bagPannel.SetActive(false);
-            animator.enabled = true;
+           // animator.enabled = true;
         }
 
 
