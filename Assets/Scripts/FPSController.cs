@@ -21,7 +21,7 @@ public class FPSController : MonoBehaviour
 
 
     public Animator animator;
-    
+
 
 
     int playerHP = 100, maxPlayerHP = 100;
@@ -29,7 +29,10 @@ public class FPSController : MonoBehaviour
 
     public GameObject Nife;
 
-    public GameObject MainCam,AttackCam;
+    public GameObject MainCam, AttackCam;
+
+    [SerializeField]
+    private GameObject GreenOrb, RedOrb;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +43,7 @@ public class FPSController : MonoBehaviour
 
         hpBer.value = playerHP;
 
-       
+
 
     }
 
@@ -62,13 +65,19 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // PingPong();
-            //MainCam.transform.position += MainCam.transform.forward * 10f * Time.deltaTime;
-            Nife.SetActive(true);
-            animator.SetTrigger("attack");
-            
-           // AttackCam.transform.position = new Vector3()
-           
+
+            if (GreenOrb && RedOrb.activeSelf == false)
+            {
+                Nife.SetActive(true);
+                animator.SetTrigger("attack");
+
+            }
+            else if (GreenOrb || RedOrb.activeSelf)
+            {
+                Nife.SetActive(false);
+                animator.SetTrigger("item");
+            }
+
         }
 
 
@@ -77,10 +86,10 @@ public class FPSController : MonoBehaviour
         {
             Nife.SetActive(false);
             animator.SetTrigger("item");
-            
+
         }
-            
-        
+
+
 
         if (Mathf.Abs(x) > 0 || Mathf.Abs(z) > 0)
         {
@@ -107,7 +116,7 @@ public class FPSController : MonoBehaviour
     }
 
     //public static float PingPong(float t, float length);
-    
+
 
 
     private void FixedUpdate()
@@ -115,8 +124,8 @@ public class FPSController : MonoBehaviour
         x = 0;
         z = 0;
 
-        x = Input.GetAxisRaw("Horizontal")*speed;
-        z = Input.GetAxisRaw("Vertical")*speed;
+        x = Input.GetAxisRaw("Horizontal") * speed;
+        z = Input.GetAxisRaw("Vertical") * speed;
 
         // transform.position += new Vector3(x, 0, z);
 
@@ -147,14 +156,14 @@ public class FPSController : MonoBehaviour
 
     public Quaternion ClampRotation(Quaternion q)
     {
-        q.x /=q.w;
+        q.x /= q.w;
         q.y /= q.w;
         q.z /= q.w;
         q.w = 1f;
 
         float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;
 
-        angleX = Mathf.Clamp(angleX,minX,MaxX); ;
+        angleX = Mathf.Clamp(angleX, minX, MaxX); ;
 
         q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
 
@@ -163,11 +172,11 @@ public class FPSController : MonoBehaviour
 
     public void TakeHit(float damage)
     {
-        playerHP =(int) Mathf.Clamp(playerHP - damage, 0, playerHP);
+        playerHP = (int)Mathf.Clamp(playerHP - damage, 0, playerHP);
 
         hpBer.value = playerHP;
 
-        if (playerHP <= 0&&!GameState.GameOver)
+        if (playerHP <= 0 && !GameState.GameOver)
         {
             GameState.GameOver = true;
             Debug.Log("ゲームオーバー");
@@ -176,7 +185,7 @@ public class FPSController : MonoBehaviour
 
     public void Heal()
     {
-       
+
         if (playerHP < 100)
         {
             Debug.Log("3");
@@ -185,5 +194,5 @@ public class FPSController : MonoBehaviour
         }
     }
 
-  
+
 }

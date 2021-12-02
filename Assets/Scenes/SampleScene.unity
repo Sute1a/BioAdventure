@@ -125358,6 +125358,8 @@ MonoBehaviour:
   Nife: {fileID: 1270264580421564498}
   MainCam: {fileID: 1687258581}
   AttackCam: {fileID: 687589401}
+  GreenOrb: {fileID: 403765759}
+  RedOrb: {fileID: 1408272425}
 --- !u!136 &2086605574
 CapsuleCollider:
   m_ObjectHideFlags: 0
