@@ -9,15 +9,14 @@ public class Bag : MonoBehaviour
     private GameObject bagPannel;
 
     [SerializeField]
-    private GameObject greenT, redT,herb;
-
-        [SerializeField]
     private GameObject greenI, redI, herbI;
+    
+    public Animator animator;
 
     [SerializeField]
-    private Button greenU, redU, herbU;
+    private GameObject GT, RT, Herb;
 
-    public Animator animator;
+    bool greenT,redT,herb = false;
 
     private void Update()
     {
@@ -39,17 +38,20 @@ public class Bag : MonoBehaviour
         }
 
 
-        if (greenT == null)
+        if (!greenT && GT==null)
         {
             greenI.SetActive(true);
+            greenT = true;
         }
-        else if (redT == null)
+        else if (!redT && RT==null)
         {
             redI.SetActive(true);
+            redT = true;
         }
-        else if (herb == null)
+        else if (!herb && Herb==null)
         {
             herbI.SetActive(true);
+            herb = true;
         }
         //bool型に変更してUpdate()を制限で解決？？
         
