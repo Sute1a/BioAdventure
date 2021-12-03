@@ -9,7 +9,8 @@ public class DeerSkull : MonoBehaviour
     private GameObject greenEye, redEye;
 
 
-
+    [SerializeField]
+    private Door door;
 
 
     private void OnTriggerEnter(Collider collision)
@@ -22,13 +23,23 @@ public class DeerSkull : MonoBehaviour
         if (collision.gameObject.name == "GreenOrb")
         {
             greenEye.SetActive(true);
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
+
+            if (redEye.activeSelf)
+            {
+                door.Open();
+            }
         }
         else if (collision.gameObject.name == "RedOrb")
         {
 
             redEye.SetActive(true);
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
+
+            if (greenEye.activeSelf)
+            {
+                door.Open();
+            }
         }
     }
 }

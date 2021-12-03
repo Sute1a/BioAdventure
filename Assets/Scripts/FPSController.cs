@@ -66,13 +66,13 @@ public class FPSController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            if (GreenOrb && RedOrb.activeSelf == false)
+            if (GreenOrb.activeSelf==false && RedOrb.activeSelf == false)
             {
                 Nife.SetActive(true);
                 animator.SetTrigger("attack");
 
             }
-            else if (GreenOrb || RedOrb.activeSelf)
+            else if (GreenOrb.activeSelf || RedOrb.activeSelf)
             {
                 Nife.SetActive(false);
                 animator.SetTrigger("item");

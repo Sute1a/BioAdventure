@@ -14681,13 +14681,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233723865}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 26.544, y: 0.19999999, z: -42.300003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 329609874}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &233723867
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -22507,6 +22507,7 @@ GameObject:
   - component: {fileID: 329609872}
   - component: {fileID: 329609871}
   - component: {fileID: 329609875}
+  - component: {fileID: 329609876}
   m_Layer: 0
   m_Name: RedTresure
   m_TagString: Tresure
@@ -22525,8 +22526,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6889751
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 0.8142213
+  m_Center: {x: 0, y: 0.8211713, z: -0.13047598}
 --- !u!23 &329609872
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22607,6 +22608,22 @@ MonoBehaviour:
   particle: {fileID: 2033985994}
   particleLight: {fileID: 233723868}
   nifecollider: {fileID: 1270264580421564500}
+--- !u!54 &329609876
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329609870}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1 &332150169
 GameObject:
   m_ObjectHideFlags: 0
@@ -118306,13 +118323,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033985991}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 26.544, y: 0.19999999, z: -42.300003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 329609874}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &2033985993
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -128588,6 +128605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4856335159564458}
   - component: {fileID: 1257242813013791}
+  - component: {fileID: 1257242813013792}
   m_Layer: 0
   m_Name: P_Door_01_
   m_TagString: Untagged
@@ -128611,6 +128629,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0.7, y: 1.4, z: -0.1}
   m_TimeToStationary: 0.5
+--- !u!114 &1257242813013792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257242813013790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8164e1cec06344a9b87511528458483d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1267992654693189
 GameObject:
   m_ObjectHideFlags: 0
@@ -130008,8 +130038,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257242813013790}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 25.78, y: 0, z: 58.92}
-  m_LocalScale: {x: 1.09, y: 1.16, z: 4.03}
+  m_LocalPosition: {x: 25.78, y: 0, z: 58.921}
+  m_LocalScale: {x: 1.11725, y: 1.16, z: 4.03}
   m_Children:
   - {fileID: 4721367617294224}
   - {fileID: 4797955968104446}
@@ -134909,6 +134939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenEye: {fileID: 1290991974352789643}
   redEye: {fileID: 3460883846195093861}
+  door: {fileID: 1257242813013792}
 --- !u!1 &6835328751159940976
 GameObject:
   m_ObjectHideFlags: 0

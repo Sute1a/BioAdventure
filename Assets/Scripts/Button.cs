@@ -17,22 +17,25 @@ public class Button : MonoBehaviour
 
     public void UseItem()
     {
-        bagPannel.SetActive(false);
+       
         if (herbI.activeSelf)
         {
-            Destroy(herbI);
+            herbI.SetActive(false);
+            bagPannel.SetActive(false);
             itemEffect.ItemUse();
         }
 
        else if (greenI.activeSelf)
         {
-            Destroy(greenI);
+            greenI.SetActive(false);
+            bagPannel.SetActive(false);
             itemEffect.GreenHold();
         }
 
        else if (redI.activeSelf)
         {
-            Destroy(redI);
+            redI.SetActive(false);
+            bagPannel.SetActive(false);
             itemEffect.RedHold();
         }
     }
