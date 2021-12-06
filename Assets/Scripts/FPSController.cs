@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FPSController : MonoBehaviour
 {
@@ -34,6 +35,17 @@ public class FPSController : MonoBehaviour
     [SerializeField]
     private GameObject GreenOrb, RedOrb;
 
+    public BoxCollider ClearJuge;
+
+    [SerializeField]
+    private GameState state;
+    [SerializeField]
+    private GameObject GC, GO;
+
+   
+
+    //public CapsuleCollider playerC;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +55,11 @@ public class FPSController : MonoBehaviour
 
         hpBer.value = playerHP;
 
+       
 
+        //transform .position =new Vector3(-9.26,1.150002,-1);
 
+        //playerC= GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -113,11 +128,33 @@ public class FPSController : MonoBehaviour
             animator.SetBool("run", false);
         }
 
+
+        if (GC.activeSelf && Input.GetKeyDown(KeyCode.N))
+        {
+            // transform.position = new Vector3(-9.26f, 1.150002f, -1);
+
+            GC.SetActive(false);
+            Debug.Log("5");
+           GameState.GameClear = false;
+
+
+            state.BackStart();
+            //playerC.enabled = false;
+        }
+
+        if (GO.activeSelf&& Input.GetKeyDown(KeyCode.R))
+        {
+
+            GameState.GameOver = false;
+            GO.SetActive(false);
+            state.BackStart();
+        }
+
     }
 
     //public static float PingPong(float t, float length);
 
-
+    
 
     private void FixedUpdate()
     {
@@ -180,6 +217,7 @@ public class FPSController : MonoBehaviour
         {
             GameState.GameOver = true;
             Debug.Log("ゲームオーバー");
+            state.Over();
         }
     }
 
@@ -194,5 +232,18 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name=="GameClear")
+        {
+            Debug.Log(collision);
+            Debug.Log("Clear");
+            transform.DOMoveX(30.5f, 4f);
+            state.Clear();
+            
+            //animator.SetBool("walk",true);
+        }
+    }
 
+   
 }
