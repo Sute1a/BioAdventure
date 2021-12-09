@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.AI;
 
 public class FPSController : MonoBehaviour
 {
@@ -40,9 +41,9 @@ public class FPSController : MonoBehaviour
     [SerializeField]
     private GameState state;
     [SerializeField]
-    private GameObject GC, GO;
+    private GameObject GC, GO,p0,GS;
 
-   
+    public  NavMeshAgent  agentP;
 
     //public CapsuleCollider playerC;
 
@@ -55,8 +56,8 @@ public class FPSController : MonoBehaviour
 
         hpBer.value = playerHP;
 
+        
        
-
         //transform .position =new Vector3(-9.26,1.150002,-1);
 
         //playerC= GetComponent<CapsuleCollider>();
@@ -65,17 +66,18 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
-        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
+       
+            float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
+            float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
 
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        characterRot *= Quaternion.Euler(0, xRot, 0);
+            cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+            characterRot *= Quaternion.Euler(0, xRot, 0);
 
-        cameraRot = ClampRotation(cameraRot);
+            cameraRot = ClampRotation(cameraRot);
 
-        cam.transform.localRotation = cameraRot;
-        transform.localRotation = characterRot;
-
+            cam.transform.localRotation = cameraRot;
+            transform.localRotation = characterRot;
+        
         UpdateCursorLock();
 
         if (Input.GetMouseButtonDown(0))
@@ -131,30 +133,40 @@ public class FPSController : MonoBehaviour
 
         if (GC.activeSelf && Input.GetKeyDown(KeyCode.N))
         {
-            // transform.position = new Vector3(-9.26f, 1.150002f, -1);
-
             GC.SetActive(false);
-            Debug.Log("5");
+           agentP.enabled = false;
            GameState.GameClear = false;
-
-
+            
             state.BackStart();
-            //playerC.enabled = false;
         }
 
-        if (GO.activeSelf&& Input.GetKeyDown(KeyCode.R))
+        if (GO.activeSelf && Input.GetKeyDown(KeyCode.R))
+        {
+            GO.SetActive(false);
+            agentP.enabled = false;
+            GameState.GameOver = false;
+
+            state.BackStart();
+        }
+
+        if (p0.activeSelf)
         {
 
-            GameState.GameOver = false;
-            GO.SetActive(false);
-            state.BackStart();
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                state.GamePlay();
+                agentP.enabled = true;
+                playerHP = maxPlayerHP;
+                hpBer.value = playerHP;
+                p0.SetActive(false);
+            }
         }
-
     }
 
     //public static float PingPong(float t, float length);
 
-    
+
 
     private void FixedUpdate()
     {
@@ -165,13 +177,18 @@ public class FPSController : MonoBehaviour
         z = Input.GetAxisRaw("Vertical") * speed;
 
         // transform.position += new Vector3(x, 0, z);
+        if (agentP.enabled ==true)
+        {
 
-        transform.position += cam.transform.forward * z + cam.transform.right * x;
+
+            transform.position += cam.transform.forward * z + cam.transform.right * x;
+            
+        }
     }
 
     public void UpdateCursorLock()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if ( Input.GetKeyDown(KeyCode.Escape))
         {
             cursorLock = false;
         }
@@ -213,7 +230,7 @@ public class FPSController : MonoBehaviour
 
         hpBer.value = playerHP;
 
-        if (playerHP <= 0 && !GameState.GameOver)
+        if (playerHP <= 0 && GameState.GameOver==false)
         {
             GameState.GameOver = true;
             Debug.Log("ゲームオーバー");
@@ -234,16 +251,24 @@ public class FPSController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name=="GameClear")
+        if (collision.gameObject.name == "GameClear")
         {
-            Debug.Log(collision);
+            GameState.GameClear = true;
             Debug.Log("Clear");
             transform.DOMoveX(30.5f, 4f);
             state.Clear();
-            
+
             //animator.SetBool("walk",true);
         }
-    }
 
-   
+
+
+
+        if (collision.gameObject.name == "Start")
+        {
+            GS.SetActive(false);
+        }
+
+
+    }
 }
