@@ -25,7 +25,7 @@ public class SceneChange : MonoBehaviour
 
         if (GameState.GameClear || GameState.GameOver)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 GameState.GameClear = false;
                 GameState.GameOver = false;

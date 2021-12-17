@@ -29,7 +29,7 @@ public class FPSController : MonoBehaviour
     int playerHP = 100, maxPlayerHP = 100;
     public Slider hpBer;
 
-    public GameObject Nife;
+    public BoxCollider Nife,Pick;
 
     public GameObject MainCam, AttackCam;
 
@@ -89,7 +89,7 @@ public class FPSController : MonoBehaviour
 
             if (GreenOrb.activeSelf==false && RedOrb.activeSelf == false)
             {
-                Nife.SetActive(true);
+                Nife.gameObject.SetActive(true);
                 animator.SetTrigger("attack");
 
                 DOTween.Sequence()
@@ -102,7 +102,7 @@ public class FPSController : MonoBehaviour
             }
             else if (GreenOrb.activeSelf || RedOrb.activeSelf)
             {
-                Nife.SetActive(false);
+                Nife.gameObject.SetActive(false);
                 animator.SetTrigger("item");
             }
 
@@ -112,7 +112,7 @@ public class FPSController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Nife.SetActive(false);
+            Nife.gameObject.SetActive(false);
             animator.SetTrigger("item");
 
         }

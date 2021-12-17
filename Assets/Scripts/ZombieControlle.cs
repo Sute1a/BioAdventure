@@ -21,7 +21,9 @@ public class ZombieControlle : MonoBehaviour
     public float stopping;
 
     public AudioClip idleSE, attackSE, deathSE, chaseSE;
-    AudioSource audioSource;
+    public AudioSource ZombieVoice;
+    public float idSE, atSE, deSE, chSE;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,7 @@ public class ZombieControlle : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("Player");
         }
 
-        audioSource = GetComponent<AudioSource>();
+        Howl();
     }
 
     public void TurnOffTrigger()
@@ -58,9 +60,10 @@ public class ZombieControlle : MonoBehaviour
     {
         if (DistanceToPlayer() < 15)
         {
+            chase();
             return true;
         }
-        audioSource.PlayOneShot(chaseSE);
+        
         return false;
     }
 
@@ -71,7 +74,6 @@ public class ZombieControlle : MonoBehaviour
             return true;
             
         }
-audioSource.PlayOneShot(idleSE);
         return false;
     }
 
@@ -81,7 +83,7 @@ audioSource.PlayOneShot(idleSE);
         {
             if (target.TryGetComponent(out FPSController controller))
             {
-                
+                Attack();
                     controller.TakeHit(attackDamage);
                 
             }
@@ -93,7 +95,43 @@ audioSource.PlayOneShot(idleSE);
     {
         TurnOffTrigger();
         animator.SetBool("Death", true);
+        Death();
         state = STATE.DEAD;
+    }
+
+    public void Howl()
+    {
+        if(!ZombieVoice.isPlaying)
+        {
+            ZombieVoice.clip = idleSE;
+            ZombieVoice.loop = true;
+            ZombieVoice.volume = idSE;
+            ZombieVoice.Play();
+        }
+    }
+
+    public void Attack()
+    {
+        ZombieVoice.clip = attackSE;
+        ZombieVoice.loop = false;
+        ZombieVoice.volume = atSE;
+        ZombieVoice.Play();
+    }
+
+    public void Death()
+    {
+        ZombieVoice.clip = deathSE;
+        ZombieVoice.loop = false;
+        ZombieVoice.volume = deSE;
+        ZombieVoice.Play();
+    }
+
+    public void chase()
+    {
+        ZombieVoice.clip = chaseSE;
+        ZombieVoice.loop = true;
+        ZombieVoice.volume = chSE;
+        ZombieVoice.Play();
     }
 
     // Update is called once per frame
@@ -189,7 +227,7 @@ audioSource.PlayOneShot(idleSE);
                 break;
 
             case STATE.ATTACK:
-                if (GameState.GameOver)
+                if (GameState.GameOver || GameState.GameClear)
                 {
                     TurnOffTrigger();
                     agent.ResetPath();

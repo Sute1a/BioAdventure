@@ -11,6 +11,7 @@ public class ZombieGenerator : MonoBehaviour
     float span = 10.0f;
     float delta = 0;
 
+    public FPSController player;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class ZombieGenerator : MonoBehaviour
             GameObject Zombie3;
             delta = 0;
             Zombie3 = Instantiate(ZombiePrefab, new Vector3(x, 0.1f, z), Quaternion.identity);
-
+            Zombie3.GetComponent<Nife2>().SetUpCollider(player.Nife, player.Pick);
 
 
 

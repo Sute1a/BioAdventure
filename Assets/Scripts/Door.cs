@@ -8,6 +8,6 @@ public class Door : MonoBehaviour
    
     public void Open()
     {
-        transform.DOMoveZ(60.4f,3f);
+        transform.DOMoveZ(60.5f,3f);
     }
 }

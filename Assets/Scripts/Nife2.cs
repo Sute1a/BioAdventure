@@ -7,7 +7,11 @@ public class Nife2 : MonoBehaviour
     [SerializeField]
     private BoxCollider nifeCollider, pickcollider,clawcolliderRight,clawcolliderLeft;
 
-
+    public void SetUpCollider(BoxCollider SetBoxCollider, BoxCollider PickColl)
+    {
+        nifeCollider = SetBoxCollider;
+        pickcollider = PickColl;
+    }
 
 
     public void OnNife()

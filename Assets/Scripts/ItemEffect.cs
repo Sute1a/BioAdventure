@@ -34,13 +34,13 @@ public class ItemEffect : MonoBehaviour
     public void GreenHold()
     {
         greenOrb.SetActive(true);
-        player.Nife.SetActive(false);
+        player.Nife.gameObject.SetActive(false);
     }
 
     public void RedHold()
     {
         redOrb.SetActive(true);
-        player.Nife.SetActive(false);
+        player.Nife.gameObject.SetActive(false);
     }
 
    
