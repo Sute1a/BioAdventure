@@ -17,7 +17,11 @@ public class ZombieControlle : MonoBehaviour
     public float runSpeed;
 
     public int attackDamage;
-    
+
+    public float stopping;
+
+    public AudioClip idleSE, attackSE, deathSE, chaseSE;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,8 @@ public class ZombieControlle : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player");
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void TurnOffTrigger()
@@ -54,7 +60,7 @@ public class ZombieControlle : MonoBehaviour
         {
             return true;
         }
-
+        audioSource.PlayOneShot(chaseSE);
         return false;
     }
 
@@ -63,9 +69,9 @@ public class ZombieControlle : MonoBehaviour
         if (DistanceToPlayer() > 20)
         {
             return true;
-
+            
         }
-
+audioSource.PlayOneShot(idleSE);
         return false;
     }
 
@@ -73,7 +79,13 @@ public class ZombieControlle : MonoBehaviour
     {
         if (target != null)
         {
-            target.GetComponent<FPSController>().TakeHit(attackDamage);
+            if (target.TryGetComponent(out FPSController controller))
+            {
+                
+                    controller.TakeHit(attackDamage);
+                
+            }
+            
         }
     }
 
@@ -100,12 +112,13 @@ public class ZombieControlle : MonoBehaviour
                 if (CanSeePlayer())
                 {
                     state = STATE.CHASE;
+                    
                 }
-                else if(Random.Range(0,5000)<10)
 
-                if (Random.Range(0, 5000) < 10)
+               else if (Random.Range(0, 5000) < 10)
                 {
                     state = STATE.WANDER;
+                    
                 }
                 break;
 
@@ -153,7 +166,7 @@ public class ZombieControlle : MonoBehaviour
                 
 
                 agent.SetDestination(target.transform.position);
-                agent.stoppingDistance = 3;
+                agent.stoppingDistance = 1.5f;
 
                 TurnOffTrigger();
 
@@ -192,7 +205,7 @@ public class ZombieControlle : MonoBehaviour
                     target.transform.position.z));
 
 
-                if (DistanceToPlayer() > agent.stoppingDistance + 2)
+                if (DistanceToPlayer() > agent.stoppingDistance + 1)
                 {
                     state = STATE.CHASE;
                 }

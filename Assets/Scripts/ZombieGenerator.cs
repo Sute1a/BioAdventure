@@ -8,7 +8,7 @@ public class ZombieGenerator : MonoBehaviour
     NavMeshAgent agent;
 
     public GameObject ZombiePrefab;
-    float span = 1.0f;
+    float span = 10.0f;
     float delta = 0;
 
 

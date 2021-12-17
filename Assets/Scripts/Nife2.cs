@@ -5,7 +5,7 @@ using UnityEngine;
 public class Nife2 : MonoBehaviour
 {
     [SerializeField]
-    private BoxCollider nifeCollider, pickcollider;
+    private BoxCollider nifeCollider, pickcollider,clawcolliderRight,clawcolliderLeft;
 
 
 
@@ -29,5 +29,25 @@ public class Nife2 : MonoBehaviour
     public void EndPick()
     {
         pickcollider.enabled = false;
+    }
+
+    public void OnRightClaw()
+    {
+        clawcolliderRight.enabled = true;
+    }
+
+    public void OffRightClaw()
+    {
+        clawcolliderRight.enabled = false;
+    }
+
+    public void OnLeftClaw()
+    {
+        clawcolliderLeft.enabled = true;
+    }
+
+    public void OffLeftClaw()
+    {
+        clawcolliderLeft.enabled = false;
     }
 }

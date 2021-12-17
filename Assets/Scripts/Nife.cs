@@ -21,6 +21,7 @@ public class Nife : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out ZombieControlle zombie))
         {
+            Debug.Log(null);
             zombie.ZombieDeath();
             // Debug.Log("Zombie");
         }

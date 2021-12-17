@@ -45,6 +45,10 @@ public class FPSController : MonoBehaviour
 
     public  NavMeshAgent  agentP;
 
+    private float originCamPos;
+
+    public float waitTime, dis, toTime,waitingTime,backTime;
+
     //public CapsuleCollider playerC;
 
     // Start is called before the first frame update
@@ -56,11 +60,11 @@ public class FPSController : MonoBehaviour
 
         hpBer.value = playerHP;
 
-        
+        originCamPos = MainCam.transform.localPosition.z;
        
         //transform .position =new Vector3(-9.26,1.150002,-1);
 
-        //playerC= GetComponent<CapsuleCollider>();
+        
     }
 
     // Update is called once per frame
@@ -88,6 +92,13 @@ public class FPSController : MonoBehaviour
                 Nife.SetActive(true);
                 animator.SetTrigger("attack");
 
+                DOTween.Sequence()
+                    .Append(MainCam.transform.DOLocalMoveZ(dis, toTime)).SetDelay(waitTime)
+                    .AppendInterval(waitingTime)
+                    .Append(MainCam.transform.DOLocalMoveZ(originCamPos, backTime));
+
+               // MainCam.transform.DOLocalMoveZ(dis, toTime).SetDelay(waitTime).OnComplete(()
+                 //   => MainCam.transform.DOLocalMoveZ(originCamPos, backTime));
             }
             else if (GreenOrb.activeSelf || RedOrb.activeSelf)
             {
@@ -130,41 +141,11 @@ public class FPSController : MonoBehaviour
             animator.SetBool("run", false);
         }
 
-
-        if (GC.activeSelf && Input.GetKeyDown(KeyCode.N))
-        {
-            GC.SetActive(false);
-           agentP.enabled = false;
-           GameState.GameClear = false;
-            
-            state.BackStart();
-        }
-
-        if (GO.activeSelf && Input.GetKeyDown(KeyCode.R))
-        {
-            GO.SetActive(false);
-            agentP.enabled = false;
-            GameState.GameOver = false;
-
-            state.BackStart();
-        }
-
-        if (p0.activeSelf)
-        {
-
-            
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                state.GamePlay();
-                agentP.enabled = true;
-                playerHP = maxPlayerHP;
-                hpBer.value = playerHP;
-                p0.SetActive(false);
-            }
-        }
+     
+        
     }
 
-    //public static float PingPong(float t, float length);
+   
 
 
 
@@ -224,19 +205,21 @@ public class FPSController : MonoBehaviour
         return q;
     }
 
-    public void TakeHit(float damage)
+
+    public void TakeHit(float attackDamage)
     {
-        playerHP = (int)Mathf.Clamp(playerHP - damage, 0, playerHP);
+        playerHP = (int)Mathf.Clamp(playerHP - attackDamage, 0, playerHP);
 
         hpBer.value = playerHP;
 
-        if (playerHP <= 0 && GameState.GameOver==false)
+        if (playerHP <= 0 && GameState.GameOver == false)
         {
             GameState.GameOver = true;
             Debug.Log("ゲームオーバー");
             state.Over();
         }
     }
+
 
     public void Heal()
     {
@@ -261,14 +244,13 @@ public class FPSController : MonoBehaviour
             //animator.SetBool("walk",true);
         }
 
-
-
-
         if (collision.gameObject.name == "Start")
         {
             GS.SetActive(false);
         }
 
+
+       
 
     }
 }

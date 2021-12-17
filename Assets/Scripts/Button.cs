@@ -15,9 +15,9 @@ public class Button : MonoBehaviour
         
     }
 
-    public void UseItem()
+    public void UseHerb()
     {
-       
+
         if (herbI.activeSelf)
         {
             herbI.SetActive(false);
@@ -25,14 +25,21 @@ public class Button : MonoBehaviour
             itemEffect.ItemUse();
         }
 
-       else if (greenI.activeSelf)
+    }
+
+    public void UseGreen()
+    {
+        if (greenI.activeSelf)
         {
             greenI.SetActive(false);
             bagPannel.SetActive(false);
             itemEffect.GreenHold();
         }
+    }
 
-       else if (redI.activeSelf)
+    public void UseRed()
+    {
+     if (redI.activeSelf)
         {
             redI.SetActive(false);
             bagPannel.SetActive(false);
