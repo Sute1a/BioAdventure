@@ -12,6 +12,8 @@ public class DeerSkull : MonoBehaviour
     [SerializeField]
     private Door door;
 
+    public AudioSource audioSource;
+    public AudioClip Eye;
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -22,6 +24,7 @@ public class DeerSkull : MonoBehaviour
 
         if (collision.gameObject.name == "GreenOrb")
         {
+            EyeFlush();
             greenEye.SetActive(true);
             collision.gameObject.SetActive(false);
 
@@ -32,7 +35,7 @@ public class DeerSkull : MonoBehaviour
         }
         else if (collision.gameObject.name == "RedOrb")
         {
-
+            EyeFlush();
             redEye.SetActive(true);
             collision.gameObject.SetActive(false);
 
@@ -41,6 +44,12 @@ public class DeerSkull : MonoBehaviour
                 door.Open();
             }
         }
+    }
+
+    public void EyeFlush()
+    {
+        audioSource.clip = Eye;
+        audioSource.Play();
     }
 }
 

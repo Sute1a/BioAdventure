@@ -49,6 +49,10 @@ public class FPSController : MonoBehaviour
 
     public float waitTime, dis, toTime,waitingTime,backTime;
 
+
+    public AudioSource audioSource;
+    public AudioClip Healing;
+
     //public CapsuleCollider playerC;
 
     // Start is called before the first frame update
@@ -125,12 +129,14 @@ public class FPSController : MonoBehaviour
             {
                 animator.SetBool("walk", false);
                 animator.SetBool("run", true);
+                
                 speed = 0.2f;
             }
             else
             {
                 animator.SetBool("walk", true);
                 animator.SetBool("run", false);
+               
                 speed = 0.1f;
             }
 
@@ -205,6 +211,7 @@ public class FPSController : MonoBehaviour
         return q;
     }
 
+   
 
     public void TakeHit(float attackDamage)
     {
@@ -229,6 +236,7 @@ public class FPSController : MonoBehaviour
             Debug.Log("3");
             playerHP = maxPlayerHP;
             hpBer.value = playerHP;
+            HealSE();
         }
     }
 
@@ -252,5 +260,12 @@ public class FPSController : MonoBehaviour
 
        
 
+    }
+
+    public void HealSE()
+    {
+        Debug.Log("9");
+        audioSource.clip = Healing;
+        audioSource.Play();
     }
 }

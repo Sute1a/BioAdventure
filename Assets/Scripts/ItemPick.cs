@@ -7,6 +7,9 @@ public class ItemPick : MonoBehaviour
     [SerializeField]
     private GameObject greenT, redT, herb, barrell0, barrell1;
 
+    public AudioSource audioSourceG, audioSourceR, audioSourceH;
+    public AudioClip GG, RG, HG;
+
     private void Start()
     {
 
@@ -21,7 +24,8 @@ public class ItemPick : MonoBehaviour
 
             if (barrell0.activeSelf == false)
             {
-                Destroy(greenT);
+                GetG();
+                Destroy(greenT,0.5f);
             }
         }
 
@@ -31,15 +35,35 @@ public class ItemPick : MonoBehaviour
 
             if (barrell1.activeSelf == false)
             {
+                GetR();
                 Debug.Log("3");
-                Destroy(redT);
+                Destroy(redT,0.5f);
             }
         }
 
         
         else if (collision.gameObject == herb)
         {
-            Destroy(herb);
+            GetH();
+            Destroy(herb,0.5f);
         }
+    }
+
+    public void GetG()
+    {
+        audioSourceG.clip = GG;
+        audioSourceG.Play();
+    }
+
+    public void GetR()
+    {
+        audioSourceR.clip = RG;
+        audioSourceR.Play();
+    }
+
+    public void GetH()
+    {
+        audioSourceH.clip = HG;
+        audioSourceH.Play();
     }
 }

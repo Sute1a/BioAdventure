@@ -10,6 +10,8 @@ public class Button : MonoBehaviour
     [SerializeField]
     private ItemEffect itemEffect;
 
+   
+
     private void Start()
     {
         
@@ -23,6 +25,7 @@ public class Button : MonoBehaviour
             herbI.SetActive(false);
             bagPannel.SetActive(false);
             itemEffect.ItemUse();
+            
         }
 
     }
@@ -46,4 +49,6 @@ public class Button : MonoBehaviour
             itemEffect.RedHold();
         }
     }
+
+    
 }

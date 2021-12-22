@@ -32,7 +32,7 @@ public class ZombieGenerator : MonoBehaviour
             GameObject Zombie3;
             delta = 0;
             Zombie3 = Instantiate(ZombiePrefab, new Vector3(x, 0.1f, z), Quaternion.identity);
-            Zombie3.GetComponent<Nife2>().SetUpCollider(player.Nife, player.Pick);
+            Zombie3.GetComponent<Nife2>().SetUpCollider(player.Nife);
 
 
 

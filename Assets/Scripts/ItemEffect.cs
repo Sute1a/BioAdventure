@@ -27,6 +27,7 @@ public class ItemEffect : MonoBehaviour
 
     public void ItemUse()
     {
+
         player.Heal();
         Debug.Log("w");
     }

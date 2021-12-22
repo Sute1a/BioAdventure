@@ -12,6 +12,9 @@ public class Tresure : MonoBehaviour
     [SerializeField]
     private BoxCollider nifecollider;
 
+    public AudioClip FlushSE;
+    public AudioSource audioSource;
+
     private void Start()
     {
         
@@ -23,19 +26,29 @@ public class Tresure : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if ( collision.gameObject.tag=="Nife" )
+
+        if (collision.gameObject.tag == "Nife")
+        {
+
+
 
             if (particle != null)
             {
                 Debug.Log("Nife1");
             }
+        }
         else
-            {
-                particleLight.Play();
-                Debug.Log("Nife2");
-            }
+        {
+            Flush();
+            particleLight.Play();
+            Debug.Log("Nife2");
+        }
     }
-    
+
+    public void Flush()
+    {
+        audioSource.clip = FlushSE;
+        audioSource.Play();
+    }
 
 }

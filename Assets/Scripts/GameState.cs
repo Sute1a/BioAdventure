@@ -15,12 +15,13 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private GameObject GC, GO,Player111,start,p0;
 
-   
+    public AudioSource audioSource;
+    public AudioClip clipClear, clipOver;
 
 
     private void Start()
     {
-        start.SetActive(true);
+       // start.SetActive(true);
         GameStart = true;
     }
 
@@ -30,14 +31,14 @@ public class GameState : MonoBehaviour
     public void Clear()
     {
         GC.SetActive(true);
-        
+        audioSource.PlayOneShot(clipClear);
         
     }
 
     public void Over()
     {
         GO.SetActive(true);
-        
+        audioSource.PlayOneShot(clipOver,2f);
         
     }
 

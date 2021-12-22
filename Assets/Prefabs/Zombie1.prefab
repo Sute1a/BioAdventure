@@ -2542,7 +2542,7 @@ MonoBehaviour:
   runSpeed: 2
   attackDamage: 3
   stopping: 1.5
-  idleSE: {fileID: 8300000, guid: c5e72c14120434b7d8c3248afc4851b6, type: 3}
+  idleSE: {fileID: 8300000, guid: 51481181258134093b3ac957766db260, type: 3}
   attackSE: {fileID: 8300000, guid: 9cff8a619ef7941ad9b7c695de6ed45f, type: 3}
   deathSE: {fileID: 8300000, guid: 51481181258134093b3ac957766db260, type: 3}
   chaseSE: {fileID: 8300000, guid: 2e0680160a6414c50821ce2b3586bedf, type: 3}
@@ -2615,6 +2615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318748e3b89a14840acd6dbaa1fb2307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  WaSE: {fileID: 0}
+  RuSE: {fileID: 0}
   nifeCollider: {fileID: 0}
   pickcollider: {fileID: 0}
   clawcolliderRight: {fileID: 0}
@@ -2632,7 +2635,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.735
-  m_Pitch: 1
+  m_Pitch: 0.3
   Loop: 0
   Mute: 0
   Spatialize: 0
